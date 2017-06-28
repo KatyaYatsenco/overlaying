@@ -1,0 +1,30 @@
+.one {
+    display: inline-flex;
+    width: 200px;
+    height: 200px;
+    border: 2px solid black;
+    margin: 10px;
+}
+
+#overlay_block {
+    position: absolute;
+    display: none;
+    background-color: yellow;
+    opacity: 0.3;
+}
+.visible {
+    display: flex !important;
+}
+.hide {
+    display: none !important;
+}
+#overlay_info {
+    position: absolute;
+    display: none;
+    justify-content: center;
+    margin: 0;
+    background-color: white;
+}
+#overlay_info p {
+    margin:0;
+}
