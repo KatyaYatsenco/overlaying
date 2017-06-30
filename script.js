@@ -1,5 +1,12 @@
-let overlayBlock = document.getElementById('overlay_block');
-let overlayInfo = document.getElementById('overlay_info');
+let overlayBlock = document.createElement('DIV');
+overlayBlock.id = 'overlay_debug_block';
+document.body.appendChild(overlayBlock);
+
+let overlayInfo = document.createElement('P');
+overlayInfo.id = 'overlay_debug_info';
+document.body.appendChild(overlayInfo);
+
+let dataAttribute = 'data-layout';
 
 let lastTarget;
 
@@ -28,12 +35,12 @@ document.body.addEventListener('mousemove', function (event) {
 function visibility(parameter, element) {
     switch (parameter) {
         case 'visible':
-            element.classList.remove('hide');
-            element.classList.add('visible');
+            element.classList.remove('overlay_debug_hide');
+            element.classList.add('overlay_debug_visible');
             break;
         case 'hide':
-            element.classList.remove('visible');
-            element.classList.add('hide');
+            element.classList.remove('overlay_debug_visible');
+            element.classList.add('overlay_debug_hide');
     }
 }
 
@@ -47,30 +54,21 @@ function setPosition(element, left, top) {
     element.style.top = top + 'px';
 }
 
-function getFullWidth(element) {
-    const computedStyle = window.getComputedStyle(element);
-    return element.offsetWidth;
-}
-
-function getFullHeight(element) {
-    const computedStyle = window.getComputedStyle(element);
-    return element.offsetHeight;
-}
 
 function elementsFromPoint() {
     return document.elementsFromPoint(event.clientX, event.clientY);
 }
 
 function renderOverlay(element) {
-    //full widthStyle include width, border, margin;
-    const targetElementFullWidth = getFullWidth(element);
+    //full widthStyle include width, border;
+    const targetElementFullWidth = element.offsetWidth;
 
-    //full heightStyle include height, border, margin;
-    const targetElementFullHeight = getFullHeight(element);
+    //full heightStyle include height, border;
+    const targetElementFullHeight = element.offsetHeight;
 
     const computedStyle = window.getComputedStyle(element);
     const offsetLeft = element.getBoundingClientRect().left;
-    const offsetTop = element.getBoundingClientRect().top;
+    const offsetTop = element.getBoundingClientRect().top + window.scrollY;
 
 
     visibility('visible', overlayBlock);
@@ -87,7 +85,7 @@ function findRequiredItem(elements) {
     for (let i = 0; i < elements.length; i++) {
 
         const element = elements[i];
-        if (element.getAttribute('data-layout')) {
+        if (element.getAttribute(dataAttribute)) {
             return element;
         }
     }

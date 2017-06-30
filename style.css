@@ -1,6 +1,7 @@
 html {
     margin: 0;
 }
+
 body {
     margin: 0;
 }
@@ -63,7 +64,7 @@ h2, h2 + p {
     margin: 3px 15px 10px 7px;
 }
 
-#overlay_block {
+#overlay_debug_block {
     position: absolute;
     display: none;
     background-color: blue;
@@ -71,7 +72,7 @@ h2, h2 + p {
     z-index: 10000;
 }
 
-#overlay_info {
+#overlay_debug_info {
     position: absolute;
     display: none;
     justify-content: center;
@@ -80,18 +81,14 @@ h2, h2 + p {
     z-index: 10001;
 }
 
-.visible {
+.overlay_debug_visible {
     display: flex !important;
 }
 
-.hide {
+.overlay_debug_hide {
     display: none !important;
 }
 
-#overlay_info p {
+#overlay_debug_info p {
     margin: 0;
-}
-
-.hint {
-    background-color: black;
 }
